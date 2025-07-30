@@ -4,11 +4,14 @@
 #' @return A character. The commit hash of the latest nixpkgs-unstable revision
 #' @importFrom curl new_handle curl_fetch_memory handle_reset
 #' @importFrom jsonlite fromJSON
-#' @importFrom curl has_internet
+#' @importFrom curl nslookup
 #'
 #' @noRd
 get_latest <- function(r_version) {
-  is_online <- TRUE
+  is_online <-
+    !is.null(nslookup("google.com", error = F))|
+    !is.null(nslookup("cran.r-project.org/", error = F))|
+    !is.null(nslookup("bioconductor.org/", error = F))
 
   stopifnot("r_version has to be a character." = is.character(r_version))
 
