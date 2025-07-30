@@ -8,7 +8,7 @@
 #'
 #' @noRd
 get_latest <- function(r_version) {
-  is_online <- has_internet()
+  is_online <- TRUE
 
   stopifnot("r_version has to be a character." = is.character(r_version))
 
